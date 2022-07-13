@@ -1,0 +1,318 @@
+namespace CryptoSchema.bond
+
+struct TransactionKey {
+    0: required string transaction_hash;
+}
+
+struct TransactionValue
+{
+    0: nullable<uint64> nonce;
+    1: string block_hash;
+    2: nullable<uint64> block_number;
+    3: nullable<uint64> transaction_index;
+    4: string from_address;
+    5: string to_address;
+    6: nullable<uint64> value;
+    7: nullable<uint64> gas;
+    8: uint64 gas_price;
+    9: string input;
+    10: nullable<uint64> block_timestamp;
+    11: nullable<uint64> max_fee_per_gas;
+    12: nullable<uint64> transaction_type;
+    13: string parent_hash;
+    14: string sha3_uncles;
+    15: string logs_bloom;
+    16: string transactions_root;
+    17: string state_root;
+    18: string receipts_root;
+    19: string miner;
+    20: nullable<uint64> difficulty;
+    21: nullable<uint64> total_difficulty;
+    22: nullable<uint64> size;
+    23: string extra_data;
+    24: nullable<uint64> gas_limit;
+    25: nullable<uint64> gas_used;
+    26: nullable<uint64> transaction_count;
+    27: nullable<uint64> base_fee_per_gas;
+    28: string block_nonce;
+    29: string token_address;
+    30: nullable<uint64> log_index;
+    31: string token_symbol;
+    32: string token_name;
+    33: nullable<uint64> token_decimals;
+    34: nullable<uint64> total_supply;
+    35: string token_block_number;
+    36: string bytecode;
+    37: string function_sighashes;
+    38: nullable<bool> is_erc20;
+    39: nullable<bool> is_erc721;
+    40: string contract_address;
+    41: nullable<uint64> contract_block_number;
+    42: nullable<uint64> cumulative_gas_used;
+    43: nullable<uint64> status;
+    44: nullable<uint64> effective_gas_price;
+    45: string receipts_contract_address;
+    46: nullable<uint64> receipts_gas_used;
+    47: nullable<string> log_address;
+    48: nullable<string> log_data;
+    49: nullable<string> log_topics;
+}
+
+[Index.DocumentType("TokenKey")]
+struct TokenKey {
+    [Index.Field("internalTokenId")]
+    0: required string internal_token_id;
+}
+
+[Index.DocumentType("TokenValue")]
+struct TokenValue {
+    [Index.Stream("tokenAddress")]
+    0: string token_address;
+
+    [Index.Stream("tokenId")]
+    1: string token_id;
+
+    [Index.Stream("symbol")]
+    2: string symbol;
+
+    [Index.Stream("name")]
+    3: string name;
+
+    [Index.MetaWord("decimals")]
+    4: nullable<uint64> decimals;
+
+    [Index.MetaWord("totalSupply")]
+    5: nullable<uint64> total_supply;
+
+    [Index.MetaWord("latestPrice")]
+    6: nullable<uint64> latest_price;
+
+    [Index.MetaWord("floorPrice")]
+    7: nullable<uint64> floor_price;
+
+    [Index.MetaWord("avgPrice")]
+    8: nullable<uint64> avg_price;
+
+    [Index.Stream("ownerAddress")]
+    9: string owner_address;
+
+    [Index.Stream("creatorAddress")]
+    10: string creator_address;
+
+    [Index.MetaWord("createTime")]
+    11: nullable<uint64> create_time;
+
+    [Index.Stream("source")]
+    12: string source;
+
+    [Index.MetaWord("chainId")]
+    13: uint64 chain_id;
+
+    [Index.Stream("description")]
+    14: nullable<string> description;
+
+    [Index.Stream("externalDescriptionUrl")]
+    15: nullable<string> external_description_url;
+
+    [Index.Stream("properties")]
+    16: nullable<string> properties;
+
+    [Index.Stream("tokenStandard")]
+    17: nullable<string> token_standard;
+
+    [Index.Stream("tokenTitle")]
+    18: nullable<string> token_title;
+
+    [Index.Stream("tokenImagePreviewUrl")]
+    19: nullable<string> token_image_preview_url;
+
+    [Index.MetaWord("tokenSupply")]
+    20: nullable<uint64> token_supply;
+
+    [Index.MetaWord("totalTransactionCount")]
+    21: nullable<uint64> total_transaction_count;
+
+    [Index.MetaWord("creatorFee")]
+    22: nullable<uint64> creator_fee;
+
+    [Index.MetaWord("bidCount")]
+    23: nullable<uint64> bid_count;
+
+    [Index.Stream("creatorName")]
+    24: nullable<string> creator_name;
+
+    [Index.Stream("creatorNameId")]
+    25: nullable<string> creator_name_id;
+
+    [Index.Stream("metadataType")]
+    26: nullable<string> metadata_type;
+
+    [Index.MetaWord("favoriteCount")]
+    27: nullable<uint64> favorite_count;
+
+    [Index.MetaWord("viewCount")]
+    28: nullable<uint64> view_count;
+
+    [Index.Stream("ownerName")]
+    29: nullable<string> owner_name;
+
+    [Index.Stream("ownerNameId")]
+    30: nullable<string> owner_name_id;
+
+    [Index.MetaWord("status")]
+    31: nullable<uint64> status;
+
+    [Index.MetaWord("latestListingStartTime")]
+    32: nullable<uint64> latest_listing_start_time;
+
+    [Index.MetaWord("latestListingExpireTime")]
+    33: nullable<uint64> latest_listing_expire_time;
+
+    [Index.MetaWord("latestTransactionTime")]
+    34: nullable<uint64> latest_transaction_time;
+
+    [Index.MetaWord("saleKind")]
+    35: nullable<uint64> sale_kind;
+
+    [Index.MetaWord("latestBidPrice")]
+    36: nullable<uint64> latest_bid_price;
+
+    [Index.MetaWord("highestOfferPrice")]
+    37: nullable<uint64> highest_offer_price;
+
+    [Index.MetaWord("offerCount")]
+    38: nullable<uint64> offer_count;
+
+    [Index.Condition("isStolen")]
+    39: nullable<bool> is_stolen;
+
+    [Index.MetaWord("lastUpdateTime")]
+    40: uint64 last_update_time;
+
+    [Index.Stream("Query")]
+    41: string Query;
+
+    [Index.MetaWord("SATModelScore")]
+    42: uint64 SATModelScore;
+
+    [Index.Stream("BodyC1")]
+    43: string BodyC1;
+}
+
+[Index.DocumentType("CollectionKey")]
+struct CollectionKey {
+    [Index.Field("collectionId")]
+    0: required string collection_id;
+}
+
+[Index.DocumentType("CollectionValue")]
+struct CollectionValue {
+
+    [Index.MetaWord("totalItems")]
+    0: uint64 total_items;
+
+    [Index.Stream("description")]
+    1: string description;
+
+    [Index.Stream("creatorNameId")]
+    2: string creator_name_id;
+
+    [Index.Stream("collectionImageUrl")]
+    3: string collection_image_url;
+
+    [Index.MetaWord("chainId")]
+    4: uint64 chain_id;
+
+    [Index.Stream("collectionBannerUrl")]
+    5: string collection_banner_url;
+
+    [Index.Stream("collectionName")]
+    6: string collection_name;
+
+    [Index.MetaWord("volumeTraded")]
+    7: uint64 volume_traded;
+
+    [Index.MetaWord("ownersNumber")]
+    8: uint64 owners_number;
+
+    [Index.MetaWord("floorPrice")]
+    9: uint64 floor_price;
+
+    [Index.Stream("pageTitle")]
+    10: string page_title;
+
+    [Index.Stream("traits")]
+    11: string traits;
+
+    [Index.Stream("source")]
+    12: string source;
+
+    [Index.Stream("ownersWebsite")]
+    13: string owners_website;
+
+    [Index.Stream("discordUrl")]
+    14: string discord_url;
+
+    [Index.Stream("mediumUrl")]
+    15: string medium_url;
+
+    [Index.Stream("telegramUrl")]
+    16: string telegram_url;
+
+    [Index.Stream("twitterUrl")]
+    17: string twitter_url;
+
+    [Index.Stream("instagramUrl")]
+    18: string instagram_url;
+
+    [Index.Condition("isBadged")]
+    19: bool is_badged;
+
+    [Index.Stream("contractAddress")]
+    20: string contract_address;
+
+    [Index.Stream("collectionUuid")]
+    21: string collection_uuid;
+
+    [Index.Stream("category")]
+    22: string category;
+
+    [Index.Stream("creatorAvatarUrl")]
+    23: string creator_avatar_url;
+
+    [Index.MetaWord("collectionListingNftCount")]
+    24: uint64 collection_listing_nft_count;
+
+    [Index.Stream("creatorAddress")]
+    25: string creator_address;
+
+    [Index.MetaWord("creationTime")]
+    26: uint64 creation_time;
+
+    [Index.MetaWord("ownerCount")]
+    27: uint64 owner_count;
+
+    [Index.MetaWord("marketCap")]
+    28: double market_cap;
+
+    [Index.MetaWord("highestPrice")]
+    29: uint64 highest_price;
+
+    [Index.MetaWord("latestFloorPrice")]
+    30: uint64 latest_floor_price;
+
+    [Index.MetaWord("latestHighestPrice")]
+    31: uint64 latest_highest_price;
+
+    [Index.MetaWord("latestVolumeTraded")]
+    32: double latest_volume_traded;
+
+    [Index.Stream("Query")]
+    33: string Query;
+
+    [Index.MetaWord("SATModelScore")]
+    34: uint64 SATModelScore;
+
+    [Index.Stream("BodyC1")]
+    35: string BodyC1;
+}
